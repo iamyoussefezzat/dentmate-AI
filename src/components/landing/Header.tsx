@@ -10,8 +10,8 @@ function Header() {
         <div className="max-w-6xl mx-auto flex justify-between items-center">
 
           <Link href="/" className=" flex items-center gap-2">
-            <Image src={"/logo.png"} className="w-11" alt="DentMate Logo" width={32} height={32}/>
-            <span className=""> DentMate</span>
+            <Image src={"/tooth.svg"} className="w-11" alt="DentMate Logo" width={32} height={32}/>
+            <span className="text-muted-foreground font-bold text-xl"> DentMate</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -39,6 +39,8 @@ function Header() {
                 </Button>
               </SignUpButton>
           </div>
+
+          
 
         </div>
     </nav>
