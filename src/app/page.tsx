@@ -1,20 +1,25 @@
-import { Button } from '@/components/ui/button'
-import { SignInButton ,SignOutButton,SignedIn,SignedOut,  } from '@clerk/nextjs'
+import CTA from "@/components/landing/CTA";
+import Footer from "@/components/landing/Footer";
+import Header from "@/components/landing/Header";
+import Hero from "@/components/landing/Hero";
+import HowItWorks from "@/components/landing/HowItWorks";
+import PricingSection from "@/components/landing/PricingSection";
+import WhatToAsk from "@/components/landing/WhatToAsk";
+import { Button } from "@/components/ui/button";
+
 
 export default function Home() {
   return (
-    <>
-      <h1>
-        Welcome to Dentmate! Your AI-Powered Dental Companion.
-      </h1>
-      <SignedOut>
-      <SignInButton mode='modal'> Sign in </SignInButton>
-      </SignedOut>
-
-      <SignedIn>
-        <SignOutButton >Log out</SignOutButton>
-      </SignedIn>
-    </>
+    <div className=" min-h-screen bg-background">
+        <Header/>
+        <Hero/>
+        <HowItWorks/>
+        <WhatToAsk/>
+        <PricingSection/>
+        <CTA/>
+        <Footer/>
+          <Button>Get Started</Button>
+   </div>
 
   )
 }
