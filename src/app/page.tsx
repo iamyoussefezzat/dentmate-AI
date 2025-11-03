@@ -10,16 +10,14 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className=" min-h-screen bg-background">
-        <Header/>
-        <Hero/>
-        <HowItWorks/>
-        <WhatToAsk/>
-        <PricingSection/>
-        <CTA/>
-        <Footer/>
-          <Button>Get Started</Button>
-   </div>
-
+     <div className="min-h-screen bg-background">
+      <Header />
+      <Hero />
+      <HowItWorks />
+      <WhatToAsk />
+      <PricingSection />
+      <CTA />
+      <Footer />
+    </div>
   )
 }
