@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id        String @id @default(cuid())
+  clerkId   String @unique
+  email     String @unique
+  firstName String ? // ? for optional field
+  lastName  String ?
+  phone     String ?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+  appointments Appointment[]
+
+  @@map("users")
+}
+
+model Doctor{
+  id          String @id @default(cuid())
+  name        String 
+  email       String @unique
+  phone       String 
+  specialty   String
+  bio         String ?
+  gender      Gender
+  isActive    Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  appointments Appointment[]
+
+  @@map("doctors")
+}
+
+model Appointment{
+id         String   @id @default(cuid())
+date       DateTime  
+time       String
+duration   Int @default(30)
+status     AppointmentStatus @default(COMFIRMED)// duration in minutes
+notes      String ?
+reason     String?
+createdAt  DateTime @default(now())
+updatedAt  DateTime @updatedAt
+
+doctorId   String
+userId   String
+
+user     User    @relation(fields: [userId], references: [id] , onDelete: Cascade)
+doctor   Doctor  @relation(fields: [doctorId], references: [id] , onDelete: Cascade)
+
+@@map("appointments")
+} 
+
+enum Gender{
+  MALE
+  FEMALE
+}
+
+enum AppointmentStatus{
+  COMFIRMED
+  COMPLETED
+}
