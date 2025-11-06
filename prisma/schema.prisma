@@ -1,6 +1,11 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -8,63 +13,72 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
+
+model User {
   id        String @id @default(cuid())
   clerkId   String @unique
   email     String @unique
-  firstName String ? // ? for optional field
-  lastName  String ?
-  phone     String ?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt 
+  firstName String?
+  lastName  String?
+  phone     String?
+  createdAt DateTime @default(now()) // member since sep 2025
+  updatedAt DateTime @updatedAt
+
+  // relationships
   appointments Appointment[]
 
   @@map("users")
 }
 
-model Doctor{
-  id          String @id @default(cuid())
-  name        String 
-  email       String @unique
-  phone       String 
-  specialty   String
-  bio         String ?
+model Doctor {
+  id          String   @id @default(cuid())
+  name        String
+  email       String   @unique
+  phone       String
+  speciality  String
+  bio         String?
+  imageUrl    String
   gender      Gender
   isActive    Boolean @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // relationships
   appointments Appointment[]
 
   @@map("doctors")
+
 }
 
-model Appointment{
-id         String   @id @default(cuid())
-date       DateTime  
-time       String
-duration   Int @default(30)
-status     AppointmentStatus @default(COMFIRMED)// duration in minutes
-notes      String ?
-reason     String?
-createdAt  DateTime @default(now())
-updatedAt  DateTime @updatedAt
+model Appointment {
+  id          String            @id @default(cuid())
+  date        DateTime
+  time        String // store time as string i.e. 14:30
+  duration    Int               @default(30) // duration in minutes
+  status      AppointmentStatus @default(CONFIRMED)
+  notes       String?
+  reason      String? // reason for appointment - teeth cleaning? emergency visit? etc.
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 
-doctorId   String
-userId   String
+  // foreign keys
+  userId String
+  doctorId String
 
-user     User    @relation(fields: [userId], references: [id] , onDelete: Cascade)
-doctor   Doctor  @relation(fields: [doctorId], references: [id] , onDelete: Cascade)
+  // relationships
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  doctor Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
-@@map("appointments")
-} 
+  @@map("appointments")
+}
 
-enum Gender{
+
+enum Gender {
   MALE
   FEMALE
 }
 
-enum AppointmentStatus{
-  COMFIRMED
-  COMPLETED
+enum AppointmentStatus {
+ CONFIRMED
+ COMPLETED
 }
