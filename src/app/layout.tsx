@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import   TanstackProvider from "@/components/providers/TanstackProvider"
 import UserSync from "@/components/UserSync"
 import "./globals.css";
 import {
@@ -34,6 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <TanstackProvider>
      <ClerkProvider
         appearance={{
           variables: {
@@ -54,5 +56,6 @@ export default function RootLayout({
       </body>
     </html>
     </ClerkProvider>
+      </TanstackProvider>
   );
 }
