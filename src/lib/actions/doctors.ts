@@ -99,3 +99,15 @@ export async function updatedoctor(input: UpdateDoctorInput){
   }
 
 }
+export async function deleteDoctor(doctorId: string) {
+  try {
+    await prisma.doctor.delete({
+      where: { id: doctorId },
+    });
+
+    revalidatePath("/admin");
+  } catch (error) {
+    console.error("Error deleting doctor:", error);
+    throw new Error("Failed to delete doctor");
+  }
+}

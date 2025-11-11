@@ -1,7 +1,7 @@
 import { useGetDoctors } from "@/hooks/use-doctors";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { EditIcon, MailIcon, PhoneIcon, PlusIcon, StethoscopeIcon } from "lucide-react";
+import { DeleteIcon, EditIcon, MailIcon, PhoneIcon, PlusIcon, StethoscopeIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
@@ -16,6 +16,7 @@ function DoctorsManagement() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
 
+
   const handleEditDoctor = (doctor: Doctor) => {
     setSelectedDoctor(doctor);
     setIsEditDialogOpen(true);
@@ -24,6 +25,12 @@ function DoctorsManagement() {
   const handleCloseEditDialog = () => {
     setIsEditDialogOpen(false);
     setSelectedDoctor(null);
+  };
+  const handleDeleteDoctor = (doctor: Doctor) => {
+    
+
+
+    console.log("Delete doctor:", doctor);
   };
 
   return (
@@ -106,6 +113,17 @@ function DoctorsManagement() {
                     <EditIcon className="size-4 mr-1" />
                     Edit
                   </Button>
+
+                    <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-8 px-3"
+                    onClick={() => handleDeleteDoctor(doctor)}
+                  >
+                    <DeleteIcon className="size-4 mr-1" />
+                    delete
+                  </Button>
+
                 </div>
               </div>
             ))}
@@ -121,6 +139,8 @@ function DoctorsManagement() {
         onClose={handleCloseEditDialog}
         doctor={selectedDoctor}
       />
+
+         
     </>
   );
 }

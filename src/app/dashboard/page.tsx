@@ -1,12 +1,21 @@
-import Navbar from '@/components/NavBar'
 import React from 'react'
+import NavBar from '@/components/NavBar'
+import WelcomeSection from '@/components/dashboard/WelcomeSection'
+import MainActions from '@/components/dashboard/MainActions'
+import ActivityOverview from '@/components/dashboard/ActivityOverview'
 
 function page() {
   return (
-    <div>
-      <Navbar/>
-      <h1>hello</h1>
-    </div>
+
+     <>
+      <NavBar />
+
+      <div className="max-w-7xl mx-auto px-6 py-8 pt-24">
+        <WelcomeSection />
+        <MainActions />
+        <ActivityOverview />
+      </div>
+    </>
   )
 }
 
