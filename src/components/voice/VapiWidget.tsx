@@ -163,7 +163,7 @@ function VapiWidget() {
               </div>
             </div>
 
-            <h2 className="text-xl font-bold text-foreground">DentWise AI</h2>
+            <h2 className="text-xl font-bold text-foreground">DentMate AI</h2>
             <p className="text-sm text-muted-foreground mt-1">Dental Assistant</p>
 
             {/* SPEAKING INDICATOR */}
@@ -212,7 +212,7 @@ function VapiWidget() {
 
             {/* User Ready Text */}
             <div className={`mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-card border`}>
-              <div className={`w-2 h-2 rounded-full bg-muted`} />
+              <div className={`w-2 h-2 rounded-full bg-chart-5`} />
               <span className="text-xs text-muted-foreground">Ready</span>
             </div>
           </div>
