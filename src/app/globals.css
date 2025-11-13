@@ -336,6 +336,7 @@ body {
 
 body {
   letter-spacing: var(--tracking-normal);
+  transition: all 0.3s;
 }
 
 @layer base {
