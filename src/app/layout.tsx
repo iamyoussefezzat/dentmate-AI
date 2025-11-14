@@ -11,6 +11,7 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import CustomScrollbar from "@/components/CustomScrollbar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <CustomScrollbar>
     <TanstackProvider>
      <ClerkProvider
         appearance={{
@@ -57,5 +59,6 @@ export default function RootLayout({
     </html>
     </ClerkProvider>
       </TanstackProvider>
+      </CustomScrollbar>
   );
 }
